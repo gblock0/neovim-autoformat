@@ -1,22 +1,9 @@
-/* globals plugin, debug */
+/* globals plugin */
 'use strict';
 
-debug('In plugin');
-var fmt = require('util').format,
-	numCalls = 0;
-
-function incrementCalls() {
-	if ( numCalls === 5 ) {
-		debug('too many calls');
-	}
-	numCalls++;
-}
-
-plugin.command('testCmd', {
-	range: '',
+plugin.command('TestCmd', {
+	range: '',   // Line 16
 	nargs: '*'
-}, function (nvim, args, range) {
-	debug('in testCmd');
-	incrementCalls();
-	nvim.commandOutput( fmt('Test cmd press: ', numCalls, ' times. ', range) );
+}, function (nvim) {
+	nvim.commandOutput( 'w' );
 });
